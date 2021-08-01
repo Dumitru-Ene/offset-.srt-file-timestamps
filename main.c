@@ -15,19 +15,19 @@ int main(int argc, char *argv[])
     float offset; //offset to be added (in seconds)
     if (argc != 3)
     {
-        printf("invalid number of arguments.\n");
+        printf("error: invalid arguments.\nUsage:%s <srt file to be modified> <new srt file name>\n",argv[0]);
         exit(1);
     }
     old = fopen(argv[1], "rt");
     if (old == NULL)
     {
-        printf("couldn't open file named '%s'\n", argv[1]);
+        printf("error: couldn't open file named '%s'\n", argv[1]);
         exit(1);
     }
     new = fopen(argv[2], "wt");
     if (new == NULL)
     {
-        printf("couldn't create file named '%s'\n", argv[1]);
+        printf("error: couldn't create file named '%s'\n", argv[1]);
         exit(1);
     }
 
@@ -37,9 +37,9 @@ int main(int argc, char *argv[])
     float sec;
     printf("enter an offset \n_>");
     scanf("%f",&offset);
-    if(myfabs(offset)>59.999)
+    if(myfabs(offset)>59.9990)
     {
-        printf("absolute value of the offsett can't be higher than 59.999 seconds\n");
+        printf("error: absolute value of the offsett can't be higher than 59.999 seconds\n");
         exit(1);
     }
     while (fgets(lineStr, 200, old) != NULL)
